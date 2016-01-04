@@ -6,7 +6,7 @@ var PORT=Number(process.env.PORT || 3000);
 
 //We need a function which handles requests and send response
 function handleRequest(request, response){
-    response.end('It Works!! Path Hit: ' + request.url);
+    response.end('The server has connected');
 }
 
 //Create a server
