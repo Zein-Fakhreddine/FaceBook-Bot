@@ -4,7 +4,7 @@
   "description": " Cool Facebook bot",
   "main": "Mybot.js",
   "scripts": {
-    "start": "node MyBot.js"
+    "start": "node Mybot.js"
   },
   "repository": {
     "type": "git",
