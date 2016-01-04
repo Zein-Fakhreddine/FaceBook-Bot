@@ -2,7 +2,15 @@
 var faceBooklogin = require("facebook-chat-api");
 var Cleverbot  = require('cleverbot-node');
 var fs = require('fs');
-var http = require('http');
+var express = require('express');
+var app = express();
+
+app.listen(process.env.PORT || 8000);
+
+// Allow pinging to wake the server.
+app.get('/', function (req, res) {
+  res.send("I'm Good.");
+});
 //The boolean that checks if the bot is in clever mode
 var isCleverBotActivated = false;
 //My id
@@ -13,7 +21,7 @@ var botsId = 100011069644334;
 var isBotActivated = false;
 
 
-http.listen(process.env.PORT || 3000);
+
 faceBooklogin({email: "betterbotapp@gmail.com", password: "astronomy"}, function callback (err, api) {
     if(err) return console.error(err);
 
