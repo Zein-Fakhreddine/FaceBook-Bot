@@ -63,12 +63,12 @@ faceBooklogin({email: "betterbotapp@gmail.com", password: "astronomy"}, function
             }
             if(isCleverBotActivated){
                 console.log("YO THIS IS WORKING");
-                cleverbot = new Cleverbot;
-                
-                cleverbot.prepare();
-                cleverbot.write(event.body, function (response) {
-                      api.sendMessage(response.message, event.threadID);
-                });
+          cleverbot = new Cleverbot;
+    Cleverbot.prepare(function(){
+      cleverbot.write(event.body, function (response) {
+            api.sendMessage(response.message, event.threadID);
+      });
+    });
             
             }
             
