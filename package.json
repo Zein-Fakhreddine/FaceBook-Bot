@@ -17,7 +17,7 @@
   "dependencies": {
     "facebook-chat-api": ">= 1.0.4",
     "cleverbot-node": ">= 0.2.1",
-	"fs": ">= 5.3.0"
+	"fs": ">= 0.0.2"
   },
   "license": "ISC",
   "bugs": {
