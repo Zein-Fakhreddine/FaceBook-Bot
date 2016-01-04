@@ -2,7 +2,7 @@
   "name": "facebook-bot",
   "version": "1.0.0",
   "description": " Cool Facebook bot",
-  "main": "Mybot.js",
+  "main": "server.js",
   "scripts": {
     "start": "node Mybot.js"
   },
