@@ -4,7 +4,7 @@
   "description": " Cool Facebook bot",
   "main": "Mybot.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node MyBot.js"
   },
   "repository": {
     "type": "git",
