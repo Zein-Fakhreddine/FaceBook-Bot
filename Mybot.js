@@ -66,7 +66,7 @@ faceBooklogin({email: "betterbotapp@gmail.com", password: "astronomy"}, function
                 cleverbot = new Cleverbot;
                 
                 cleverbot.prepare();
-                cleverbot.write(cleverMessage, function (response) {
+                cleverbot.write(event.body, function (response) {
                       api.sendMessage(response.message, event.threadID);
                 });
             
