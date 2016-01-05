@@ -13,7 +13,7 @@ var myId = 100001621545283;
 var botsId = 100011069644334;
 //Checks if the bot is activated
 var isBotActivated = false;
-
+var boolean readyToPing = false;
 
 var app = express();
 
@@ -27,7 +27,9 @@ app.get('/', function (req, res) {
 
 setInterval(function() {
     console.log("PINGING");
-    http.get("desolate-spire-2315.herokuapp.com");
+    if(readyToPing)
+        http.get("desolate-spire-2315.herokuapp.com");
+    readyToPing = true;
 }, 300000); // every 5 minutes (300000
 
 faceBooklogin({email: "betterbotapp@gmail.com", password: "astronomy"}, function callback (err, api) {
