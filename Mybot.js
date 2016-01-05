@@ -12,7 +12,7 @@ var myId = 100001621545283;
 //Bots id
 var botsId = 100011069644334;
 //Checks if the bot is activated
-var isBotActivated = false;
+var isBotActivated = true;
 var readyToPing = false;
 
 var app = express();
