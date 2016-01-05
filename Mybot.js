@@ -28,7 +28,7 @@ app.get('/', function (req, res) {
 setInterval(function() {
     console.log("PINGING");
     if(readyToPing)
-        http.get("desolate-spire-2315.herokuapp.com");
+        http.get("myfacebookbot.herokuapp.com.herokuapp.com");
     readyToPing = true;
 }, 300000); // every 5 minutes (300000
 
