@@ -3,6 +3,8 @@ var faceBooklogin = require("facebook-chat-api");
 var Cleverbot  = require('cleverbot-node');
 var fs = require('fs');
 var express = require('express');
+var http = require("http");
+
 //The boolean that checks if the bot is in clever mode
 var isCleverBotActivated = false;
 //My id
@@ -22,6 +24,11 @@ app.get('/', function (req, res) {
   res.send("I'm Good.");
 });
 
+
+setInterval(function() {
+    consolelog("PINGING");
+    http.get(desolate-spire-2315.herokuapp.com");
+}, 300000); // every 5 minutes (300000
 
 faceBooklogin({email: "betterbotapp@gmail.com", password: "astronomy"}, function callback (err, api) {
     if(err) return console.error(err);
