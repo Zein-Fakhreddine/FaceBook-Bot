@@ -57,7 +57,7 @@ faceBooklogin({email: "betterbotapp@gmail.com", password: "astronomy"}, function
                 //api.sendMessage("That guys sucks", event.threadID);
                 var msg = {
                     body: "Gabe",
-                    attachment: fs.createReadStream(__dirname + '/Gabe.jpg')
+                    attachment: fs.createReadStream(__dirname + +"/images" +  '/Gabe.jpg')
                 }
                 api.sendMessage(msg, event.threadID);
             }
