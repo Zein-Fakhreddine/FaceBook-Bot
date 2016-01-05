@@ -26,7 +26,7 @@ app.get('/', function (req, res) {
 
 
 setInterval(function() {
-    consolelog("PINGING");
+    console.log("PINGING");
     http.get("desolate-spire-2315.herokuapp.com");
 }, 300000); // every 5 minutes (300000
 
