@@ -27,7 +27,7 @@ app.get('/', function (req, res) {
 
 setInterval(function() {
     consolelog("PINGING");
-    http.get(desolate-spire-2315.herokuapp.com");
+    http.get("desolate-spire-2315.herokuapp.com");
 }, 300000); // every 5 minutes (300000
 
 faceBooklogin({email: "betterbotapp@gmail.com", password: "astronomy"}, function callback (err, api) {
