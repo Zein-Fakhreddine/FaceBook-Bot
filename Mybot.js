@@ -32,7 +32,7 @@ setInterval(function() {
     readyToPing = true;
 }, 300000); // every 5 minutes (300000
 
-faceBooklogin({email: "betterbotapp@gmail.com", password: "astronomy"}, function callback (err, api) {
+faceBooklogin({email: process.env.FACEBOOK_USERNAME, password: process.env.FACEBOOK_PASSWORD}, function callback (err, api) {
     if(err) return console.error(err);
 
 
