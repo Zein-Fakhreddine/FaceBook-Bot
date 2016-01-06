@@ -4,6 +4,7 @@ var Cleverbot  = require('cleverbot-node');
 var fs = require('fs');
 var express = require('express');
 var http = require("http");
+var joke = require('jokesearch');
 
 //The boolean that checks if the bot is in clever mode
 var isCleverBotActivated = false;
@@ -91,6 +92,11 @@ faceBooklogin({email: process.env.FACEBOOK_USERNAME, password: process.env.FACEB
                 }
             }
             
+            if(message == 'JOKE'){
+                getJoke(function(joke){
+                   console.log(joke); 
+                });
+            }
             if(message.indexOf("image ") != -1){
                 var images = String(event.body).replace("image ", "");
                  var msg = {
