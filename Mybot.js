@@ -44,14 +44,15 @@ faceBooklogin({email: process.env.FACEBOOK_USERNAME, password: process.env.FACEB
         console.log("The event type is" + event.type);
         
         switch(event.type) {
-        
-          case "message":
+            
+          case "message": //Making sure the message is a message
             
             if(event.senderID == botsId)
                 return;
             
-                
-            if(event.body == 'ActivateBot' && event.senderID == myId){
+            var message = String(event.body).toUpperCase();
+            
+            if(message == 'ActivateBot' && event.senderID == myId){
               isBotActivated = !isBotActivated;
                 if(isBotActivated){
                       api.sendMessage("MyBot activated", event.threadID);
@@ -62,7 +63,7 @@ faceBooklogin({email: process.env.FACEBOOK_USERNAME, password: process.env.FACEB
             if(!isBotActivated)
                 return;   
                 
-            if(String(event.body).indexOf('erf') != -1){
+            if(message.indexOf('erf') != -1){
                 //api.sendMessage("That guys sucks", event.threadID);
                 var msg = {
                     body: "Gabe",
@@ -80,7 +81,7 @@ faceBooklogin({email: process.env.FACEBOOK_USERNAME, password: process.env.FACEB
                 });
             }
             
-            if(event.body == 'CleverBot'){
+            if(message == 'CleverBot'){
                 isCleverBotActivated = !isCleverBotActivated;   
                 if(isCleverBotActivated){
                     api.sendMessage("Cleverbot activated", event.threadID);
@@ -90,7 +91,7 @@ faceBooklogin({email: process.env.FACEBOOK_USERNAME, password: process.env.FACEB
                 }
             }
             
-            if(String(event.body).indexOf("image ") != -1){
+            if(message.indexOf("image ") != -1){
                 var images = String(event.body).replace("image ", "");
                  var msg = {
                     body: "Image",
