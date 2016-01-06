@@ -93,7 +93,7 @@ faceBooklogin({email: process.env.FACEBOOK_USERNAME, password: process.env.FACEB
             }
             
             if(message == 'JOKE'){
-                getJoke(function(joke){
+                joke.getJoke(function(joke){
                    console.log(joke); 
                 });
             }
