@@ -1,4 +1,13 @@
-  var express     = require('express'),
+var http = require('http');
+var server = http.createServer(function(req, res){
+    res.writeHead(200, {'Content-Type': 'text/html'});
+    res.end('<h1> Hello World </h1>');
+});
+
+var port = Number(process.env.PORT || 8000);
+server.listen(port);
+/*
+var express     = require('express'),
       mongoose    = require('mongoose');
 
 var app = express();
@@ -14,8 +23,7 @@ app.listen(8000);
 
 module.exports = app;
 
-
-/* Walkthrough of the server
+ Walkthrough of the server
 
   Express, mongoose, and our server are initialzed here
   Next, we then inject our server and express into our config/middleware.js file for setup.
