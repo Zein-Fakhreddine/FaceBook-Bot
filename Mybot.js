@@ -8,9 +8,9 @@ var http = require("http");
 //The boolean that checks if the bot is in clever mode
 var isCleverBotActivated = false;
 //My id (loaded through heroku variables)
-var myId = praseInt(process.env.FACEBOOK_ID);
+var myId = process.env.FACEBOOK_ID;
 //Bots id (loaded through heroku variables)
-var botsId = parseInt(process.env.FACEBOOK_BOTID);
+var botsId = process.env.FACEBOOK_BOTID;
 //Checks if the bot is activated
 var isBotActivated = true;
 var readyToPing = false;
