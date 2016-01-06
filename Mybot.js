@@ -35,7 +35,7 @@ setInterval(function() {
 }, 300000); // every 5 minutes (300000
 
 //Use the "facebook-chat-api" to log into facebook with heroku varaibles 
-faceBooklogin({email:process.env.FACEBOOK_USERNAME, password:  process.env.FACEBOOK_PASSWORD}, function callback (err, api) {
+faceBooklogin({email: process.env.FACEBOOK_USERNAME, password: process.env.FACEBOOK_PASSWORD}, function callback (err, api) {
     if(err) return console.error(err);
 
 //Allow the chat api to listen to Facebook messages
