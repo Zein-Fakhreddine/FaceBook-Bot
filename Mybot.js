@@ -52,7 +52,7 @@ faceBooklogin({email: process.env.FACEBOOK_USERNAME, password: process.env.FACEB
             
             var message = String(event.body).toUpperCase();
             
-            if(message == 'ActivateBot' && event.senderID == myId){
+            if(message == 'ACTIVATEBOT' && event.senderID == myId){
               isBotActivated = !isBotActivated;
                 if(isBotActivated){
                       api.sendMessage("MyBot activated", event.threadID);
@@ -63,7 +63,7 @@ faceBooklogin({email: process.env.FACEBOOK_USERNAME, password: process.env.FACEB
             if(!isBotActivated)
                 return;   
                 
-            if(message.indexOf('erf') != -1){
+            if(message.indexOf('ERF') != -1){
                 //api.sendMessage("That guys sucks", event.threadID);
                 var msg = {
                     body: "Gabe",
@@ -81,7 +81,7 @@ faceBooklogin({email: process.env.FACEBOOK_USERNAME, password: process.env.FACEB
                 });
             }
             
-            if(message == 'CleverBot'){
+            if(message == 'CLEVERBOT'){
                 isCleverBotActivated = !isCleverBotActivated;   
                 if(isCleverBotActivated){
                     api.sendMessage("Cleverbot activated", event.threadID);
