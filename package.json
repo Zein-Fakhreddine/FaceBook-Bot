@@ -18,7 +18,7 @@
 	"cleverbot-node": "^0.2.1",
     "express": "^4.4.5",
     "facebook-chat-api": "^1.0.4",
-	"jokesearch": "^1.0.0"
+	"jokesearch": "^1.0.4"
   },
   "license": "ISC",
   "bugs": {
