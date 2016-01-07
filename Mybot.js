@@ -4,7 +4,6 @@ var Cleverbot  = require('cleverbot-node');
 var fs = require('fs');
 var express = require('express');
 var http = require("http");
-
 var joke = require('jokesearch');
 
 //The boolean that checks if the bot is in clever mode
@@ -30,7 +29,7 @@ app.get('/', function (req, res) {
 setInterval(function() {
     console.log("PINGING");
     if(readyToPing)
-        http.get("myfacebookbot.herokuapp.com.herokuapp.com");
+        http.get("myfacebookbot.com.herokuapp.com");
     readyToPing = true;
 }, 300000); // every 5 minutes (300000
 
