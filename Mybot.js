@@ -29,7 +29,7 @@ app.get('/', function (req, res) {
 setInterval(function() {
     console.log("PINGING");
     if(readyToPing)
-        http.get("myfacebookbot.com.herokuapp.com");
+        http.get("myfacebookbot.herokuapp.com");
     readyToPing = true;
 }, 300000); // every 5 minutes (300000
 
