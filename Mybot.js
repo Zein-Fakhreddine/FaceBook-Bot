@@ -45,7 +45,6 @@ faceBooklogin({email: process.env.FACEBOOK_USERNAME, password: process.env.FACEB
         console.log("The event type is" + event.type);
         
         switch(event.type) {
-            
           case "message": //Making sure the message is a message
             
             if(event.senderID == botsId)
@@ -62,8 +61,7 @@ faceBooklogin({email: process.env.FACEBOOK_USERNAME, password: process.env.FACEB
                 }
             } 
             if(!isBotActivated)
-                return;   
-                
+                return;     
             if(message.indexOf('ERF') != -1){
                 //api.sendMessage("That guys sucks", event.threadID);
                 var msg = {
@@ -81,7 +79,6 @@ faceBooklogin({email: process.env.FACEBOOK_USERNAME, password: process.env.FACEB
                     });
                 });
             }
-            
             if(message == 'CLEVERBOT'){
                 isCleverBotActivated = !isCleverBotActivated;   
                 if(isCleverBotActivated){
@@ -91,17 +88,15 @@ faceBooklogin({email: process.env.FACEBOOK_USERNAME, password: process.env.FACEB
                     api.sendMessage("Cleverbot deactivated", event.threadID);   
                 }
             }
-            
             if(message == 'JOKE'){
                 joke.getJoke(function(joke){
                     api.sendMessage(joke, event.threadID);
                 });
             }
-            if(message.indexOf("image ") != -1){
-                var images = String(event.body).replace("image ", "");
-                 var msg = {
-                    body: "Image",
-                    attachment: fs.createReadStream('F:/Pictures/Saved Images/' + images)
+            if(message.indexOf('USMAN') != -1){
+                var msg = {
+                    body: "Edward",
+                    attachment: fs.createReadStream(__dirname + '/Edward.jpg')
                 }
                 api.sendMessage(msg, event.threadID);
             }
