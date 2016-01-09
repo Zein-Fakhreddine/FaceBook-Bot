@@ -33,10 +33,12 @@ setInterval(function() {
     readyToPing = true;
 }, 300000); // every 5 minutes (300000
 
-cleverbot = new Cleverbot;
-Cleverbot.prepare(function(){
-    isCleverBotReady = true;
-});
+if(!isCleverBotReady){
+    cleverbot = new Cleverbot;
+    Cleverbot.prepare(function(){
+        isCleverBotReady = true;
+    });
+}
 
 //Use the "facebook-chat-api" to log into facebook with heroku varaibles 
 faceBooklogin({email: process.env.FACEBOOK_USERNAME, password: process.env.FACEBOOK_PASSWORD}, function callback (err, api) {
