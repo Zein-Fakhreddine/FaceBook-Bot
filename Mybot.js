@@ -15,7 +15,7 @@ var botsId = process.env.FACEBOOK_BOTID;
 //Checks if the bot is activated
 var isBotActivated = true;
 var readyToPing = false;
-
+var isCleverBotReady = false;
 var app = express();
 
 app.listen(process.env.PORT || 8000);
@@ -32,6 +32,11 @@ setInterval(function() {
         http.get("myfacebookbot.herokuapp.com");
     readyToPing = true;
 }, 300000); // every 5 minutes (300000
+
+cleverbot = new Cleverbot;
+Cleverbot.prepare(function(){
+    isCleverBotReady = true;
+});
 
 //Use the "facebook-chat-api" to log into facebook with heroku varaibles 
 faceBooklogin({email: process.env.FACEBOOK_USERNAME, password: process.env.FACEBOOK_PASSWORD}, function callback (err, api) {
@@ -70,13 +75,9 @@ faceBooklogin({email: process.env.FACEBOOK_USERNAME, password: process.env.FACEB
                 }
                 api.sendMessage(msg, event.threadID);
             }
-            if(isCleverBotActivated){
-                console.log("YO THIS IS WORKING");
-                cleverbot = new Cleverbot;
-                Cleverbot.prepare(function(){
+            if(isCleverBotActivated && isCleverBotReady){
                 cleverbot.write(event.body, function (response) {
                     api.sendMessage(response.message, event.threadID);
-                    });
                 });
             }
             if(message == 'CLEVERBOT'){
@@ -89,7 +90,7 @@ faceBooklogin({email: process.env.FACEBOOK_USERNAME, password: process.env.FACEB
                 }
             }
             if(message == 'JOKE'){
-                joke.getJoke(function(joke){
+                joke.getJoke(function callback(joke){
                     api.sendMessage(joke, event.threadID);
                 });
             }
