@@ -31,9 +31,14 @@ setInterval(function() {
     if(readyToPing)
         http.get("myfacebookbot.herokuapp.com");
     readyToPing = true;
+<<<<<<< HEAD
 }, 300000); // every 5 minutes (300000)
 
 //Initizializes cleverbot
+=======
+}, 300000); // every 5 minutes (300000
+
+>>>>>>> 23028fe48364a0c1cd625b0771facb154d6e7b6b
 if(!isCleverBotReady){
     cleverbot = new Cleverbot;
     Cleverbot.prepare(function(){
