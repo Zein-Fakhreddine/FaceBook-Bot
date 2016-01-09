@@ -22,7 +22,7 @@ app.listen(process.env.PORT || 8000);
 
 // Allow pinging to wake the server.
 app.get('/', function (req, res) {
-  res.send("I'm Good.");
+    res.send("I'm Good.");
 });
 
 //Function to ping the heroku site every 5 minutes so it doesn't idle
@@ -31,14 +31,8 @@ setInterval(function() {
     if(readyToPing)
         http.get("myfacebookbot.herokuapp.com");
     readyToPing = true;
-<<<<<<< HEAD
-}, 300000); // every 5 minutes (300000)
-
-//Initizializes cleverbot
-=======
 }, 300000); // every 5 minutes (300000
 
->>>>>>> 23028fe48364a0c1cd625b0771facb154d6e7b6b
 if(!isCleverBotReady){
     cleverbot = new Cleverbot;
     Cleverbot.prepare(function(){
@@ -51,68 +45,68 @@ faceBooklogin({email: process.env.FACEBOOK_USERNAME, password: process.env.FACEB
     if(err) return console.error(err);
 
 //Allow the chat api to listen to Facebook messages
- api.setOptions({listenEvents: true});
-    
+    api.setOptions({listenEvents: true});
+
     var stopListening = api.listen(function(err, event) {
         if(err) return console.error(err);
         console.log("The event type is" + event.type);
-        
+
         switch(event.type) {
-          case "message": //Making sure the message is a message
-            
-            if(event.senderID == botsId)
-                return;
-            
-            var message = String(event.body).toUpperCase();
-            
-            if(message == 'ACTIVATEBOT' && event.senderID == myId){
-              isBotActivated = !isBotActivated;
-                if(isBotActivated){
-                      api.sendMessage("MyBot activated", event.threadID);
-                }else{
-                     api.sendMessage("MyBot deactivated", event.threadID);
+            case "message": //Making sure the message is a message
+
+                if(event.senderID == botsId)
+                    return;
+
+                var message = String(event.body).toUpperCase();
+
+                if(message == 'ACTIVATEBOT' && event.senderID == myId){
+                    isBotActivated = !isBotActivated;
+                    if(isBotActivated){
+                        api.sendMessage("MyBot activated", event.threadID);
+                    }else{
+                        api.sendMessage("MyBot deactivated", event.threadID);
+                    }
                 }
-            } 
-            if(!isBotActivated)
-                return;     
-            if(message.indexOf('ERF') != -1){
-                //api.sendMessage("That guys sucks", event.threadID);
-                var msg = {
-                    body: "Gabe",
-                    attachment: fs.createReadStream(__dirname + '/Gabe.jpg')
+                if(!isBotActivated)
+                    return;
+                if(message.indexOf('ERF') != -1){
+                    //api.sendMessage("That guys sucks", event.threadID);
+                    var msg = {
+                        body: "Gabe",
+                        attachment: fs.createReadStream(__dirname + '/Gabe.jpg')
+                    }
+                    api.sendMessage(msg, event.threadID);
                 }
-                api.sendMessage(msg, event.threadID);
-            }
-            if(isCleverBotActivated && isCleverBotReady){
-                cleverbot.write(event.body, function (response) {
-                    api.sendMessage(response.message, event.threadID);
-                });
-            }
-            if(message == 'CLEVERBOT'){
-                isCleverBotActivated = !isCleverBotActivated;   
-                if(isCleverBotActivated){
-                    api.sendMessage("Cleverbot activated", event.threadID);
+                if(isCleverBotActivated && isCleverBotReady){
+                    cleverbot.write(event.body, function (response) {
+                        api.sendMessage(response.message, event.threadID);
+                    });
                 }
-                else{
-                    api.sendMessage("Cleverbot deactivated", event.threadID);   
+                if(message == 'CLEVERBOT'){
+                    isCleverBotActivated = !isCleverBotActivated;
+                    if(isCleverBotActivated){
+                        api.sendMessage("Cleverbot activated", event.threadID);
+                    }
+                    else{
+                        api.sendMessage("Cleverbot deactivated", event.threadID);
+                    }
                 }
-            }
-            if(message == 'JOKE'){
-                joke.getJoke(function callback(joke){
-                    api.sendMessage(joke, event.threadID);
-                });
-            }
-            if(message.indexOf('USMAN') != -1){
-                var msg = {
-                    body: "Edward",
-                    attachment: fs.createReadStream(__dirname + '/Edward.jpg')
+                if(message == 'JOKE'){
+                    joke.getJoke(function callback(joke){
+                        api.sendMessage(joke, event.threadID);
+                    });
                 }
-                api.sendMessage(msg, event.threadID);
-            }
-            break;
-          case "event":
-            console.log(event);
-            break;
+                if(message.indexOf('USMAN') != -1){
+                    var msg = {
+                        body: "Edward",
+                        attachment: fs.createReadStream(__dirname + '/Edward.jpg')
+                    }
+                    api.sendMessage(msg, event.threadID);
+                }
+                break;
+            case "event":
+                console.log(event);
+                break;
         }
     });
 });
