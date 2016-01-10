@@ -1,9 +1,9 @@
 //Required Modules
-var faceBooklogin = require("facebook-chat-api");
+var faceBooklogin = require('facebook-chat-api');
 var Cleverbot  = require('cleverbot-node');
 var fs = require('fs');
 var express = require('express');
-var http = require("http");
+var http = require('http');
 var joke = require('jokesearch');
 
 //The boolean that checks if the bot is in clever mode
@@ -14,7 +14,9 @@ var myId = process.env.FACEBOOK_ID;
 var botsId = process.env.FACEBOOK_BOTID;
 //Checks if the bot is activated
 var isBotActivated = true;
+//Does not ping the first time the bot is activated
 var readyToPing = false;
+//Checks if the cleverbot is prepared
 var isCleverBotReady = false;
 var app = express();
 
@@ -28,10 +30,15 @@ app.get('/', function (req, res) {
 //Function to ping the heroku site every 5 minutes so it doesn't idle
 setInterval(function() {
     console.log("PINGING");
-    if(readyToPing)
-        http.get("myfacebookbot.herokuapp.com");
+    if(readyToPing){
+        api.logout(function callback(err){
+            if(err) return console.error(err);
+            http.get("myfacebookbot.herokuapp.com");
+        });
+    }
+
     readyToPing = true;
-}, 300000); // every 5 minutes (300000
+}, 120000); // every 2 minutes (120000)
 
 if(!isCleverBotReady){
     cleverbot = new Cleverbot;
@@ -40,23 +47,20 @@ if(!isCleverBotReady){
     });
 }
 
-//Use the "facebook-chat-api" to log into facebook with heroku varaibles 
+//Use the "facebook-chat-api" to log into facebook with heroku varaibles
 faceBooklogin({email: process.env.FACEBOOK_USERNAME, password: process.env.FACEBOOK_PASSWORD}, function callback (err, api) {
     if(err) return console.error(err);
-
 //Allow the chat api to listen to Facebook messages
     api.setOptions({listenEvents: true});
 
-    var stopListening = api.listen(function(err, event) {
+    api.listen(function(err, event) {
         if(err) return console.error(err);
         console.log("The event type is" + event.type);
 
         switch(event.type) {
             case "message": //Making sure the message is a message
-
                 if(event.senderID == botsId)
                     return;
-
                 var message = String(event.body).toUpperCase();
 
                 if(message == 'ACTIVATEBOT' && event.senderID == myId){
@@ -70,7 +74,6 @@ faceBooklogin({email: process.env.FACEBOOK_USERNAME, password: process.env.FACEB
                 if(!isBotActivated)
                     return;
                 if(message.indexOf('ERF') != -1){
-                    //api.sendMessage("That guys sucks", event.threadID);
                     var msg = {
                         body: "Gabe",
                         attachment: fs.createReadStream(__dirname + '/Gabe.jpg')
