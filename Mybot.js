@@ -27,18 +27,7 @@ app.get('/', function (req, res) {
     res.send("I'm Good.");
 });
 
-//Function to ping the heroku site every 5 minutes so it doesn't idle
-setInterval(function() {
-    console.log("PINGING");
-    if(readyToPing){
-        api.logout(function callback(err){
-            if(err) return console.error(err);
-            http.get("myfacebookbot.herokuapp.com");
-        });
-    }
 
-    readyToPing = true;
-}, 120000); // every 2 minutes (120000)
 
 if(!isCleverBotReady){
     cleverbot = new Cleverbot;
@@ -52,6 +41,19 @@ faceBooklogin({email: process.env.FACEBOOK_USERNAME, password: process.env.FACEB
     if(err) return console.error(err);
 //Allow the chat api to listen to Facebook messages
     api.setOptions({listenEvents: true});
+
+    //Function to ping the heroku site every 5 minutes so it doesn't idle
+    setInterval(function() {
+        console.log("PINGING");
+        if(readyToPing){
+            api.logout(function callback(err){
+                if(err) return console.error(err);
+                http.get("myfacebookbot.herokuapp.com");
+            });
+        }
+
+        readyToPing = true;
+    }, 120000); // every 2 minutes (120000)
 
     api.listen(function(err, event) {
         if(err) return console.error(err);
