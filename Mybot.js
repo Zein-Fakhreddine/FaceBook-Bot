@@ -5,7 +5,7 @@ var fs = require('fs');
 var express = require('express');
 var http = require('http');
 var joke = require('jokesearch');
-
+var scSearch = require('soundcloud-search-node');
 //The boolean that checks if the bot is in clever mode
 var isCleverBotActivated = false;
 //My id (loaded through heroku variables)
@@ -96,6 +96,13 @@ faceBooklogin({email: process.env.FACEBOOK_USERNAME, password: process.env.FACEB
                         api.sendMessage("Cleverbot deactivated", event.threadID);
                     }
                 }
+
+                if(message == 'DYNAMICDJ'){
+                    scSearch.getTracks("The chainsmokers", 1, function(tracks){
+                        api.sendMessage(tracks[i].title);
+                    });
+                }
+
                 if(message == 'JOKE'){
                     joke.getJoke(function callback(joke){
                         api.sendMessage(joke, event.threadID);
