@@ -99,7 +99,7 @@ faceBooklogin({email: process.env.FACEBOOK_USERNAME, password: process.env.FACEB
 
                 if(message == 'DYNAMICDJ'){
                     scSearch.getTracks("The chainsmokers", 1, function(tracks){
-                        api.sendMessage(tracks[0].title);
+                        api.sendMessage(tracks[0].title, event.threadID);
                     });
                 }
 
